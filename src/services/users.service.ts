@@ -10,7 +10,8 @@ export class UsersService {
     private usersRepository: typeof User
   ) {}
 
-  async findAll(): Promise<User[]> {
+  async getAll(): Promise<User[]> {
+    console.log("DOOM")
     return this.usersRepository.findAll<User>();
   }
 }
