@@ -1,11 +1,20 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Req, Query } from '@nestjs/common';
+import { User } from 'src/entitys';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { UsersService } from "../services/users.service"
+
 
 @Controller('users')
 export class UsersController {
+
+  constructor(private readonly usersService : UsersService){}
+
+
   @Get()
-  helloworld(): string{
-    return "Hello world"
+  async getAllUsers(@Req() Req, @Query() query){
+    console.log("1")
+    let users = await this.usersService.getAll();
+    return users;
   }
 
   @Get(':id')
